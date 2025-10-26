@@ -36,7 +36,10 @@ export const authOptions = {
     async session({ session }) {
       const dbUser = await User.findOne({ email: session.user.email });
       
-      if (dbUser) {session.user.uid = dbUser.uid;
+      if(dbUser.userName){
+        session.user.name = `@${dbUser.userName}`
+      }
+      else{session.user.uid = dbUser.uid;
         session.user.name = `@${session.user.name.toLowerCase()}_12`
       }
 
@@ -48,4 +51,4 @@ export const authOptions = {
 
 // ✅ Handler for the Next.js route
 const handler = NextAuth(authOptions);
-export { handler as GET, handler as POST };
+export { handler as GET, handler as POST };as POST };
