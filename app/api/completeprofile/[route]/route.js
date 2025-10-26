@@ -178,7 +178,7 @@ export async function GET(request, context) {
     } else {
       console.log(session.user.email , "iiam gmaiii")
       forms = await FormSch.findOne({
-      email: `@${session.user.email}`,
+      email: `${session.user.email}`,
       });
       if (forms) {
         return NextResponse.json({ success: true, res: forms });
