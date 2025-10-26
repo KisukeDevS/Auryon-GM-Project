@@ -1,6 +1,9 @@
 import mongoose from "mongoose";
 
-const formSch = new mongoose.Schema({
+const FormSch = new mongoose.Schema({
+  email : {type : String,
+    required : true
+  },
   name: {
     type: String,
     required: true,
@@ -25,4 +28,4 @@ const formSch = new mongoose.Schema({
     default: Date.now,
   },
 });
-export default mongoose.models.FormSch || mongoose.model("FormSch", formSch);
+export default mongoose.models.formSch || mongoose.model("formSch", FormSch);
