@@ -109,9 +109,9 @@ export async function POST(request) {
       email : session.user.email
     };
     console.log("images are uploaded to cloudinnary ");
-    const userFind = await FormSch.findOne({ userName: `${userNamee}` });
+    const userFind = await FormSch.findOne({ email: `${session.user.email}` });
     if (userFind) {
-      await FormSch.deleteMany({ userName: `${userNamee}` });
+      await FormSch.deleteMany({ email: `${session.user.email}` });
       await FormSch.create(pageData);
     } else {
       await FormSch.create(pageData);
