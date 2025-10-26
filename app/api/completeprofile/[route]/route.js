@@ -1,5 +1,5 @@
 import { connectDB } from "@/lib/mongodb";
-import formSch from "@/models/FormSch";
+import FormSch from "@/models/FormSch";
 import { NextResponse } from "next/server";
 import axios from "axios";
 import { v2 as cloudinary } from "cloudinary";
@@ -106,14 +106,15 @@ export async function POST(request) {
       coverImage: uploadedCover,
       aboutyou: aboutyou ? aboutyou : "Its a user of Auryon , Boost My AURA",
       userName: `${userNamee}`,
+      email : session.user.email
     };
     console.log("images are uploaded to cloudinnary ");
-    const userFind = await formSch.findOne({ userName: `${userNamee}` });
+    const userFind = await FormSch.findOne({ userName: `${userNamee}` });
     if (userFind) {
-      await formSch.deleteMany({ userName: `${userNamee}` });
-      await formSch.create(pageData);
+      await FormSch.deleteMany({ userName: `${userNamee}` });
+      await FormSch.create(pageData);
     } else {
-      await formSch.create(pageData);
+      await FormSch.create(pageData);
     }
     console.log("data  added");
     console.log(userNamee);
@@ -166,7 +167,7 @@ export async function GET(request, context) {
     }
     let forms;
     if (searchedUser == "YourPage") {
-      forms = await formSch.findOne({
+      forms = await FormSch.findOne({
         userName: newToken
           ? `${session.user.userName}`
           : `${session.user.name}`,
@@ -175,8 +176,9 @@ export async function GET(request, context) {
       
         return NextResponse.json({ success: true, res: forms });
     } else {
-      forms = await formSch.findOne({
-      userName: `@${searchedUser}`,
+      console.log(session.user.email , "iiam gmaiii")
+      forms = await FormSch.findOne({
+      email: `@${session.user.email}`,
       });
       if (forms) {
         return NextResponse.json({ success: true, res: forms });
