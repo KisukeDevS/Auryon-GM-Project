@@ -37,7 +37,7 @@ export const authOptions = {
       const dbUser = await User.findOne({ email: session.user.email });
       
       if(dbUser.userName){
-        session.user.name = `@${dbUser.userName}`
+        session.user.name = `${dbUser.userName}`
       }
       else{session.user.uid = dbUser.uid;
         session.user.name = `@${session.user.name.toLowerCase()}_12`
