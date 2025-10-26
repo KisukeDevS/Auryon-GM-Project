@@ -168,9 +168,7 @@ export async function GET(request, context) {
     let forms;
     if (searchedUser == "YourPage") {
       forms = await FormSch.findOne({
-        userName: newToken
-          ? `${session.user.userName}`
-          : `${session.user.name}`,
+        email: `${session.user.email}`
       });
       console.log(forms, "i am form");
       
