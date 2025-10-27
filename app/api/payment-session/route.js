@@ -46,12 +46,9 @@ export async function GET(req) {
     console.log(commentss, "comments");
     console.log(ttuserName, "i am utuser from session");
     console.log(userNamee, "fuser");
-    if (!session_id) {
-      return (
-        NextResponse.json({ error: "No session_id provided" }),
-
-      );
-    }
+  if (!session_id) {
+  return NextResponse.json({ error: "No session_id provided" });
+}
 
     const session = await stripe.checkout.sessions.retrieve(session_id);
 
