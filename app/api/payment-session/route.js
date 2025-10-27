@@ -49,9 +49,7 @@ export async function GET(req) {
     if (!session_id) {
       return (
         NextResponse.json({ error: "No session_id provided" }),
-        {
-          status: 400,
-        }
+
       );
     }
 
