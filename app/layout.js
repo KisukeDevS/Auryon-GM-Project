@@ -8,7 +8,8 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 
 export const metadata = {
   title: "Auryon - Fund Your Favorite One's Aura",
-  description: "Aura booster web app by funding",
+  description: "Discover Auryon, the ultimate productivity and creativity platform, designed to boost Aura by funding , its an funding platform.
+",
 };
 
 export default function RootLayout({ children }) {
